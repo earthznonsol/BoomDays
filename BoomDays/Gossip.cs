@@ -19,10 +19,7 @@ namespace BoomDays
 
         public int Days
         {
-            get
-            {
-                return days;
-            }
+            get => days;
         }
         public int MaxBoomSize {
             get

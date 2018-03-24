@@ -15,6 +15,8 @@ namespace BoomDaysTest
 
             int start_people = 1;
             Gossip gossip = new Gossip(start_people);
+            Console.WriteLine();
+            // init gossip
             gossip.CalculateBoomSize();
 
             int actualBoomSize = gossip.MaxBoomSize;
