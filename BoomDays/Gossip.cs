@@ -50,7 +50,6 @@ namespace BoomDays
         {
             if (totalBoomSize < MAX_PERSONS)
             {
-                
                 currBoomSize = GetBoomSize(totalPeople);
                 totalBoomSize += currBoomSize;
                 currBoomSizeDay++;
