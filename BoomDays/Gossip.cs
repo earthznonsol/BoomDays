@@ -7,15 +7,12 @@ namespace BoomDays
         public const int MAX_PERSONS = 10000;
         public const int MAX_PERSONS_IN_GROUP = 20;
 
-        private int startTotalPeople;
+        private int days = 0;
+        private int maxBoomSize = 0;
 
-        private int days;
-        private int maxBoomSize;
+        private int currBoomSize = 1;
 
-        private int currBoomSize;
-        private int currBoomSizeDay;
-        
-        private int totalBoomSize;
+        private int totalBoomSize = 0;
 
         public int Days
         {
@@ -24,51 +21,58 @@ namespace BoomDays
                 return days;
             }
         }
-        public int MaxBoomSize {
+        public int MaxBoomSize
+        {
             get
             {
                 return maxBoomSize;
             }
         }
 
-        public Gossip(int startTotalPeople)
+        public int CurrBoomsize
         {
-            this.startTotalPeople = startTotalPeople;
-            days = 0;
-            maxBoomSize = 0;
-            currBoomSize = 0;
-            currBoomSizeDay = 0;
-            totalBoomSize = 0;
-        }
-
-        public void CalculateBoomSize()
-        {
-            CalculateMaxBoomSize(startTotalPeople);
-        }
-
-        private void CalculateMaxBoomSize(int totalPeople)
-        {
-            if (totalBoomSize < MAX_PERSONS)
+            get
             {
-                currBoomSize = GetBoomSize(totalPeople);
-                totalBoomSize += currBoomSize;
-                currBoomSizeDay++;
-                if (currBoomSize > maxBoomSize)
-                {
-                    maxBoomSize = currBoomSize;
-                    days = currBoomSizeDay;
-                }
-                CalculateMaxBoomSize(maxBoomSize);
+                return currBoomSize;
+            }
+            private set
+            {
+                currBoomSize = value * MAX_PERSONS_IN_GROUP;
+                if ((totalBoomSize + currBoomSize) > MAX_PERSONS)
+                    currBoomSize = MAX_PERSONS - totalBoomSize;
             }
         }
 
-        private int GetBoomSize(int totalPeople)
+        public Gossip()
         {
-            int bs = totalPeople * MAX_PERSONS_IN_GROUP;
-            if ((totalBoomSize + bs) > MAX_PERSONS)
-                bs = MAX_PERSONS - totalBoomSize;
+            CalculateMaxBoomSize();
+        }
 
-            return bs;
+        private void CalculateMaxBoomSize()
+        {
+            if (totalBoomSize < MAX_PERSONS)
+            {
+                CalculateNewBoomSize();
+            }
+        }
+
+        private void StoreResults()
+        {
+            if (currBoomSize > maxBoomSize)
+            {
+                maxBoomSize = currBoomSize;
+                days++;
+            }
+        }
+
+        private void CalculateNewBoomSize () {
+            CurrBoomsize = currBoomSize;
+
+            StoreResults();
+            totalBoomSize += currBoomSize;
+
+            CalculateMaxBoomSize();
+
         }
     }
 }

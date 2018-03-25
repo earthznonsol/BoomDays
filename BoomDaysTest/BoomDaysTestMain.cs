@@ -13,13 +13,7 @@ namespace BoomDaysTest
             int expectedDays = 3;
             int expectedBommSize = 8000;
 
-            int start_people = 1;
-            Gossip gossip = new Gossip(start_people);
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-            gossip.CalculateBoomSize();
+            Gossip gossip = new Gossip();
 
             int actualBoomSize = gossip.MaxBoomSize;
             int actualDay = gossip.Days;
