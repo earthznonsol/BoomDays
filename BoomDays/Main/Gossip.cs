@@ -55,7 +55,6 @@ namespace BoomDays.Main
             }
         }
 
-
         public void StoreResults()
         {
             if (currBoomSize > maxBoomSize)
