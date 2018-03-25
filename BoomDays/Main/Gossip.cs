@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BoomDays
+namespace BoomDays.Main
 {
     public class Gossip
     {
@@ -35,7 +35,7 @@ namespace BoomDays
             {
                 return currBoomSize;
             }
-            private set
+            set
             {
                 currBoomSize = value * MAX_PERSONS_IN_GROUP;
                 if ((totalBoomSize + currBoomSize) > MAX_PERSONS)
@@ -45,10 +45,9 @@ namespace BoomDays
 
         public Gossip()
         {
-            CalculateMaxBoomSize();
         }
 
-        private void CalculateMaxBoomSize()
+        public void CalculateMaxBoomSize()
         {
             if (totalBoomSize < MAX_PERSONS)
             {
@@ -56,7 +55,8 @@ namespace BoomDays
             }
         }
 
-        private void StoreResults()
+
+        public void StoreResults()
         {
             if (currBoomSize > maxBoomSize)
             {
@@ -65,7 +65,7 @@ namespace BoomDays
             }
         }
 
-        private void CalculateNewBoomSize () {
+        public void CalculateNewBoomSize () {
             CurrBoomsize = currBoomSize;
 
             StoreResults();
